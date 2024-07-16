@@ -1,0 +1,155 @@
+데이터베이스 및 테이블 생성 코드
+
+create database olive;
+use olive;
+
+create table admin (
+	id varchar(20) not null primary key,
+	pw varchar(20) not null
+);
+
+insert into admin (id, pw) values ('admin', '1234'); 
+
+create table user (
+	idx int(4) auto_increment,
+	id varchar(20) not null,
+	pw tinytext not null,
+	name varchar(20) not null,
+	email varchar(20) not null,
+	phone varchar(20) not null,
+	level varchar(20) default “baby” not null,
+	gender varchar(2) not null,
+	address tinytext not null,
+	birthday char(6) not null,
+	primary key(idx, id)
+);
+
+create table coupon (
+	user_idx int(4) not null,
+	name varchar(20) not null,
+	discount smallint not null,
+	moment date not null
+);
+
+create table payment (
+	user_idx int(4) not null,
+	item_idx int(4) not null,
+	moment date not null,
+	price int(4) not null,
+	count smallint not null
+);
+
+create table basket (
+	idx int(4) auto_increment,
+	user_idx int(4) not null,
+	category tinytext not null,
+	item_idx int(4) not null,
+	count int(4) not null, 
+	price int(4) not null,
+	Sale smallint not null,
+	primary key (idx)
+);
+
+create table item (
+	idx int(4) auto_increment,
+	category varchar(20) not null,
+	title tinytext not null,
+	image tinytext  not null,
+	price int(4) not null,
+	detail text not null,
+	discount int not null default 0,
+	stock_count int not null default 100,
+	hit int(4) default 0,
+	primary key (idx)
+);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Skin", "VT 리들샷 100 에센스 50ml", "/Skin/skin1.jpg", 32000, "/Skin/skin1-1.jpg" , 10, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ("Skin", "구달 청귤 비타C 잡티케어 세럼 30ml 트리플기획(30ml*3ea)", "/Skin/skin2.jpg", 31900, "/Skin/skin2-1.jpg" , 10, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ("Skin", "토리든 다이브인 저분자 히알루론산 세럼 50ml 리필기획(+리필팩 50ml)", "/Skin/skin3.jpg", 36000, "/Skin/skin3-1.jpg" , 10, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ("Skin", "웰라쥬 리얼 히알루로닉 블루 100 앰플 100ml+75ml 기획", "/Skin/skin4.jpg", 32900, "/Skin/skin4-1.jpg" , 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ("Skin", "토리든 다이브인 수딩크림 100ml 더블 한정 기획 (+20ml+셀메이징 앰플 10ml)", "/Skin/skin5.jpg", 42000, "/Skin/skin5-1.jpg" ) ;
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ("Skin", "라로슈포제 NEW 시카플라스트 밤B5+ 100ml 기획(+시카밤 3ml * 2 증정)", "/Skin/skin6.jpg", 27300, "/Skin/skin6-1.jpg" , 10, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ("Skin", "차앤박(CNP) 프로폴리스 액티브 앰플 30ml 트리플 기획 (+나이스웨더 파우치)", "/Skin/skin7.jpg", 40700, "/Skin/skin7-1.jpg" , 10, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ("Skin", "넘버즈인 3번 보들보들 결 세럼 80ml 기획(+3번 결 세럼팩)", "/Skin/skin8.jpg", 34000, "/Skin/skin8-1.jpg" , 10, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ("Skin", "에스트라 아토베리어365 크림 80ml 기획 (+하이드로에센스 25ml+리제덤세럼 7ml)", "/Skin/skin9.jpg", 33000, "/Skin/skin9-1.jpg" , 10, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Cleansing", "마녀공장 퓨어 클렌징 오일 300ml +25mlx2 한정 기획 ", "/Cleansing/cleansing1.jpg", 25000, "/Cleansing/cleansing1-1.PNG" , 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Cleansing", "비플레인 녹두 약산성 클렌징폼 160ml + 40ml 기획 ", "/Cleansing/cleansing2.jpg", 21900, "/Cleansing/cleansing2-1.PNG" , 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Cleansing", "메이크프렘 세이프 미 클렌징밀크 200ml 어워즈 한정 기획 ", "/Cleansing/cleansing3.jpg", 28000, "/Cleansing/cleansing3-1.PNG" , 5, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Cleansing", "바이오더마 센시비오 H2O 500ml+500ml  ", "/Cleansing/cleansing4.jpg", 42000, "/Cleansing/cleansing4-1.PNG" , 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Cleansing", "토리든 다이브인 저분자 히알루론산 클렌징 폼 더블 기획 (150ml+150ml)  ", "/Cleansing/cleansing5.jpg", 26000, "/Cleansing/cleansing5-1.PNG" , 5, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Cleansing", "폰즈 클리어 스파 립앤아이 리무버 (본품300ml+120ml)  ", "/Cleansing/cleansing6.jpg", 32000, "/Cleansing/cleansing6-1.PNG" , 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Cleansing", "아누아 어성초 포어 컨트롤 클렌징오일 200ml ", "/Cleansing/cleansing7.jpg", 25000, "/Cleansing/cleansing7-1.PNG" , 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Cleansing", "에스네이처 아쿠아 라이스 약산성 클렌징폼 160ml 기획(+20ml) ", "/Cleansing/cleansing8.jpg", 19000, "/Cleansing/cleansing8-1.PNG" , 5, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Cleansing", "메디필 레드 락토 콜라겐 클리어 폼 2.0 기획 (300ml+딥 해면 구성)  ", "/Cleansing/cleansing9.jpg", 24000, "/Cleansing/cleansing9-1.PNG" , 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Makeup", "웨이크메이크 스테이 픽서 멀티 컬러 파우더 3COLOR 브러시기획  ", "/Makeup/Makeup1.jpg", 29000, "/Makeup/Makeup1-1.jpg", 15, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Makeup", "더샘 커버 퍼펙션 트리플 팟 컨실러 4colors ", "/Makeup/Makeup2.jpg", 12000, "/Makeup/Makeup2-1.jpg", 15, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Makeup", "롬앤 글래스팅 컬러 글로스  ", "/Makeup/Makeup3.jpg", 13000, "/Makeup/Makeup3-1.jpg", 15, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Makeup", "어뮤즈 세라믹 스킨 퍼펙터 쿠션 리필 한정 기획 (본품+리필 증정)  ", "/Makeup/Makeup4.jpg", 35000, "/Makeup/Makeup4-1.jpg", 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Makeup", "퓌 립앤치크 블러리 푸딩팟 30컬러  ", "/Makeup/Makeup5.jpg", 22000, "/Makeup/Makeup5-1.jpg", 15, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Makeup", "파넬 시카마누 세럼쿠션 기획 (본품+리필)  ", "/Makeup/Makeup6.jpg", 37000, "/Makeup/Makeup6-1.jpg", 15, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Makeup", "정샘물 에센셜 물크림 택1 (오리지널/라이트)  ", "/Makeup/Makeup7.jpg", 35000, "/Makeup/Makeup7-1.jpg", 15, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Makeup", "클리오 샤프 쏘 심플 워터프루프 펜슬라이너  ", "/Makeup/Makeup8.jpg", 11000, "/Makeup/Makeup8-1.jpg", 15, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Makeup", "웨이크메이크 소프트 블러링 아이팔레트 17 COLOR (기획/단품) ", "/Makeup/Makeup9.jpg", 34000, "/Makeup/Makeup9-1.jpg", 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Perfume", "존바바토스 아티산 EDT (40ml/75ml/125ml/기획) ", "/Perfume/perfume1.jpg", 87000, "/Perfume/perfume1-1.png", 20, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Perfume", "겐조 남성 향수 50ml/60ml 2종 택1 (로 겐조 뿌르 옴므 EDT 50ml / 겐조 옴므 EDP 60ml)", "/Perfume/perfume2.jpg", 92000, "/Perfume/perfume2-1.jpg", 20, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Perfume", "버버리 위크엔드 포맨 EDT 100ml", "/Perfume/perfume3.jpg", 102000, "/Perfume/perfume3-1.jpg", 20, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Perfume", "그레이그라운드 메디나 향수 50ml", "/Perfume/perfume4.jpg", 74000, "/Perfume/perfume4-1.jpg", 20, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Perfume", "포맨트 시그니처 퍼퓸 50ml (코튼메모리)", "/Perfume/perfume5.jpg", 49000, "/Perfume/perfume5-1.jpg", 20, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Perfume", "버버리 터치 포 우먼 EDP 50ml", "/Perfume/perfume6.jpg", 130000, "/Perfume/perfume6-1.jpg", 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Perfume", "필로소피 어메이징그레이스 발레로즈 EDT 60ml", "/Perfume/perfume7.jpg", 79000, "/Perfume/perfume7-1.PNG", 0, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Perfume", "나르시소 로드리게즈 엉브레 EDP (30ml/50ml)", "/Perfume/perfume8.jpg", 141000, "/Perfume/perfume8-1.jpg", 20, 50);
+
+insert into item (category, title, image, price, detail, discount, stock_count) values ( "Perfume", "끌로에 EDP 4종 택1 (20ml기획/30ml/50ml/75ml)", "/Perfume/perfume9.jpg", 95000, "/Perfume/perfume9-1.jpg", 20, 50);
+
+create table review (
+	idx int(4) auto_increment primary key,
+	user_id varchar(20) not null,
+	item_idx int(4) not null,
+	content text not null,
+	image tinytext not null,
+	moment date not null,
+	grade int(1) not null
+);
+
+create table qna (
+	idx int(4) auto_increment primary key,
+	user_id varchar(20) not null,
+	item_idx int(4) not null,
+	questionContent text not null,
+	answer text,
+	moment date not null
+);
